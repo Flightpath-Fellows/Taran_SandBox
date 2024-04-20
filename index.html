@@ -2,7 +2,77 @@
 <html>
     <body>
         <span>
-            hello world
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autofill Data Table</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+<h2>Autofill Data Table</h2>
+
+<form id="questionForm">
+    <label for="question1">Question 1:</label>
+    <input type="text" id="question1" name="question1" required><br><br>
+    <label for="question2">Question 2:</label>
+    <input type="text" id="question2" name="question2" required><br><br>
+    <label for="question3">Question 3:</label>
+    <input type="text" id="question3" name="question3" required><br><br>
+    <label for="question4">Question 4:</label>
+    <input type="text" id="question4" name="question4" required><br><br>
+    <button type="submit">Submit</button>
+</form>
+
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th>Questions</th>
+            <th>Answers</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<script>
+    document.getElementById('questionForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var questions = [
+            document.getElementById('question1').value,
+            document.getElementById('question2').value,
+            document.getElementById('question3').value,
+            document.getElementById('question4').value
+        ];
+        var tableBody = document.querySelector('#dataTable tbody');
+        tableBody.innerHTML = '';
+        questions.forEach(function(question) {
+            var row = tableBody.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.textContent = question;
+            for (var i = 1; i <= 5; i++) {
+                cell2.innerHTML += '<input type="text" value="Answer ' + i + '"><br>';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
         </span>
     </body>
 </html>
